@@ -16,6 +16,7 @@
     let cf;
     setInterval(() => {
       if (window.Cashfree) {
+        window.alert('Cashfree SDK loaded')
         cf = window.Cashfree()
         clearInterval(timer)
         const continueToCheckout = document.getElementById('checkout')
