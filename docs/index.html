@@ -6,11 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://sdk.cashfree.com/js/v3/cashfree.js" defer></script>
     <title>Vite App</title>
-    <script type="module" crossorigin src="/assets/index-b595e338.js"></script>
   </head>
   <body>
     <input id="cf-session-input" type="text" /> <br /> <br />
     <button id="checkout">Checkout with CashFrees</button>
-    
+    <script>
+      const continueToCheckout = document.getElementById('checkout')
+const cfSessionInput = document.getElementById('cf-session-input')
+
+const cf = window.Cashfree()
+
+continueToCheckout.onclick = () => {
+  try {
+
+    const sessionId = cfSessionInput?.value
+
+    if (!sessionId) {
+      alert('Please enter a valid session id')
+      return
+    }
+
+    let checkoutOptions = {
+      paymentSessionId: sessionId,
+      mode: "sandbox",
+      returnUrl: window.location.href
+    }
+    cf.checkout(checkoutOptions)
+  } catch (error) {
+    console.log(error)
+  }
+}
+    </script>
   </body>
 </html>
